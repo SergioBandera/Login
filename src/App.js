@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import { Login } from './components/Login'
+import {Brand} from './components/Brand'
+import { Link, Route, Routes} from "react-router-dom"
+import UserContext from './context/UserContext'
 
-function App() {
+export const App = () => {
+
+  const [user, setUser] = useState("X-UserID")
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <UserContext.Provider value={{user, setUser}}>
+    <>
+      <header>
+        <h1>{user}</h1>
+        <nav>
+          <ul>
+            <li><Link to='/'>Login</Link></li>
+            <li><Link to='/Brand'>Brand</Link></li>
+          </ul>
+        </nav>
       </header>
-    </div>
-  );
+      <Routes>
+        <Route path='/' element={<Login />} />
+        <Route path='/brand' element={<Brand />} />
+      </Routes>
+        
+    </>
+      
+   
+  
+   </UserContext.Provider>
+  )
 }
-
-export default App;
