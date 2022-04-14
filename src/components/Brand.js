@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { TOKEN } from '../constants/constants';
 import { getToken } from '../utils/utils';
 
 export const Brand = () =>{
@@ -12,14 +13,23 @@ export const Brand = () =>{
   
    useEffect(() => {
      llamada();
+     
            
-      console.log(getToken());
+  
    },[])
 
   async function llamada() {
     const respuesta = await fetch ('https://virtserver.swaggerhub.com/rantunam/accounting/1.0.0/brand', {
+    method:"GET",
+    headers: {
+      'Content-Type':'aplication/json',
+      'name':`${getToken()}`,
+      required:true
+    },
+    
   })
     const json = await respuesta.json();
+    
 
     setEmpresa({
       brand: json.brand,

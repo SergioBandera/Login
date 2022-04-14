@@ -1,9 +1,10 @@
 import React, { useState, useContext} from 'react'
 import UserContext from '../context/UserContext'
 import {useNavigate } from 'react-router-dom';
-import "../index.css";
 import { TOKEN } from '../constants/constants';
 import { setToken } from '../utils/utils';
+
+import "../index.css";
 
 export const Login = () =>{
   const navigate = useNavigate();
